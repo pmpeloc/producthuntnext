@@ -1,11 +1,11 @@
-import React, {useState, useContext} from 'react';
-import {css} from '@emotion/react';
+import React, { useEffect, useState, useContext } from 'react';
+import { css } from '@emotion/react';
 import Router, { useRouter } from 'next/router';
 import FileUploader from 'react-firebase-file-uploader';
 import Layout from '../components/layout/Layout';
-import {Campo, Formulario, InputSubmit, Error} from '../components/ui/Formulario';
+import { Campo, Formulario, InputSubmit, Error } from '../components/ui/Formulario';
 // Firebase
-import { FirebaseContext } from '../firebase';
+import { FirebaseContext } from '../firebase/index';
 // Validaciones
 import useValidation from '../hooks/useValidation';
 import validarCrearProducto from '../validacion/validarCrearProducto';
@@ -42,6 +42,14 @@ const NuevoProducto = () => {
   const router = useRouter();
   // Context con las operaciones CRUD de Firebase
   const { usuario, firebase } = useContext(FirebaseContext);
+
+  useEffect(() => {
+    firebase.auth.onAuthStateChanged(user => {
+      if (!user) {
+        return router.push('/login');
+      }
+    });
+  }, []);
 
   async function crearProducto() {
     // Si el usuario no esta autenticado, llevar al login

@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { es } from 'date-fns/locale';
-import { FirebaseContext } from '../../firebase';
+import { FirebaseContext } from '../../firebase/index';
 import Error404 from '../../components/layout/404';
 import Layout from '../../components/layout/Layout';
 import { Campo, InputSubmit } from '../../components/ui/Formulario';

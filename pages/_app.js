@@ -1,5 +1,6 @@
 import App from 'next/app';
-import firebase, {FirebaseContext} from '../firebase';
+import firebase from '../firebase/index';
+import { FirebaseContext } from '../firebase/index';
 import useAuthentication from '../hooks/useAuthentication';
 import '../styles/globals.css'
 
